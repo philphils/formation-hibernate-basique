@@ -1,4 +1,4 @@
-﻿package fr.insee.formation.hibernate5.services.impl;
+﻿package fr.insee.formation.hibernate.services.impl;
 
 import java.time.Year;
 import java.time.YearMonth;
@@ -9,13 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.insee.formation.hibernate5.dao.SecteurDAO;
-import fr.insee.formation.hibernate5.model.Declaration;
-import fr.insee.formation.hibernate5.model.Entreprise;
-import fr.insee.formation.hibernate5.model.IndiceAnnuel;
-import fr.insee.formation.hibernate5.model.IndiceMensuel;
-import fr.insee.formation.hibernate5.model.Secteur;
-import fr.insee.formation.hibernate5.services.SecteurServices;
+import fr.insee.formation.hibernate.dao.SecteurDAO;
+import fr.insee.formation.hibernate.model.Declaration;
+import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.IndiceAnnuel;
+import fr.insee.formation.hibernate.model.IndiceMensuel;
+import fr.insee.formation.hibernate.model.Secteur;
+import fr.insee.formation.hibernate.services.SecteurServices;
 
 @Service
 public class SecteurServicesImpl implements SecteurServices {
