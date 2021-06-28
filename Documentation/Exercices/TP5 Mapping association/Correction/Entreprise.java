@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.model;
+package fr.insee.formation.hibernate.model;
 
 import java.util.Collections;
 import java.util.Date;
