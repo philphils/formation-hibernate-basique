@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.dao.impl;
+package fr.insee.formation.hibernate.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Repository;
 
 import fr.insee.config.InseeConfig;
 import fr.insee.config.exception.PoolException;
-import fr.insee.formation.hibernate5.dao.EntrepriseDAO;
-import fr.insee.formation.hibernate5.model.Adresse;
-import fr.insee.formation.hibernate5.model.Entreprise;
-import fr.insee.formation.hibernate5.model.TypeVoie;
+import fr.insee.formation.hibernate.dao.EntrepriseDAO;
+import fr.insee.formation.hibernate.model.Adresse;
+import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.TypeVoie;
 
 public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 	private Logger logger = Logger.getLogger(EntrepriseDAOJDBCImpl.class);
 
-	@Value("${fr.insee.formation.hibernate5.schema}")
+	@Value("${fr.insee.formation.hibernate.schema}")
 	private String schema;
 
 	@Override
@@ -32,7 +32,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 		Connection connection = getConnection();
 
-		//TODO Ecrire la requête
+		//TODO Ecrire la requÃªte
 		String requete = "SELECT * FROM " + schema + ".ENTREPRISE ORDER BY dateCreation";
 
 		PreparedStatement statement = null;
@@ -47,7 +47,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 			while (resultSet.next()) {
 
-				//TODO Créer les objets Java Entreprise et renseigner leur champs
+				//TODO CrÃ©er les objets Java Entreprise et renseigner leur champs
 				Entreprise entreprise = new Entreprise();
 
 				entreprise.setId(resultSet.getInt("id"));
@@ -93,7 +93,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 		Connection connection = null;
 
 		try {
-			connection = InseeConfig.getPool("hibernate5").getConnection();
+			connection = InseeConfig.getPool("hibernate").getConnection();
 		} catch (SQLException e) {
 			logger.error(e, e);
 			throw new RuntimeException(e);
