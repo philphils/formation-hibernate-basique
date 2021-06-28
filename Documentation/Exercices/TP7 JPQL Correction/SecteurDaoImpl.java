@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.dao.impl;
+package fr.insee.formation.hibernate.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,8 +6,8 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import fr.insee.formation.hibernate5.dao.SecteurDAO;
-import fr.insee.formation.hibernate5.model.Secteur;
+import fr.insee.formation.hibernate.dao.SecteurDAO;
+import fr.insee.formation.hibernate.model.Secteur;
 
 @Repository
 public class SecteurDaoImpl implements SecteurDAO {
