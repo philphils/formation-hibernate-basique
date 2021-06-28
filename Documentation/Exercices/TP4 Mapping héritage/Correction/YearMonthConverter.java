@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.model.converter;
+package fr.insee.formation.hibernate.model.converter;
 
 import java.time.YearMonth;
 import java.time.ZoneId;

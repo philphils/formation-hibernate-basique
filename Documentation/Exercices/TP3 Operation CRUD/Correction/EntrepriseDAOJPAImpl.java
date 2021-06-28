@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.dao.impl;
+package fr.insee.formation.hibernate.dao.impl;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import fr.insee.formation.hibernate5.dao.EntrepriseDAO;
-import fr.insee.formation.hibernate5.model.Entreprise;
+import fr.insee.formation.hibernate.dao.EntrepriseDAO;
+import fr.insee.formation.hibernate.model.Entreprise;
 
 @Repository
 @Transactional
