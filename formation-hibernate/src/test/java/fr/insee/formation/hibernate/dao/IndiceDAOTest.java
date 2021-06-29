@@ -42,7 +42,7 @@ public class IndiceDAOTest {
 
 		IndiceAnnuel indiceAnnuel = indiceDAO.findIndiceAnnuel(identifiant1);
 
-		assertEquals("L'indice vaut 10", new Double(10), indiceAnnuel.getValeur());
+		assertEquals("L'indice vaut 10", Double.valueOf(10), indiceAnnuel.getValeur());
 
 		assertEquals("L'annuel est 2017", "2017", indiceAnnuel.getYear().toString());
 
@@ -50,7 +50,7 @@ public class IndiceDAOTest {
 
 		assertEquals("Le mois doit être decemnbre", YearMonth.of(2017, Month.DECEMBER), indiceMensuel.getMonth());
 
-		assertEquals("L'indice doit valoir 10.4", new Double(10.4d), indiceMensuel.getValeur());
+		assertEquals("L'indice doit valoir 10.4", Double.valueOf(10.4d), indiceMensuel.getValeur());
 
 		Set<Indice> indices = indiceDAO.findAll();
 

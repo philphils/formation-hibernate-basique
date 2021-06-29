@@ -47,7 +47,7 @@ public class JeuxTestUtil {
 
 		indiceAnnuel.setValeur(10d);
 
-		indiceAnnuel.setYear(Year.now());
+		indiceAnnuel.setYear(Year.of(2017));
 
 		entityManager.persist(indiceAnnuel);
 
