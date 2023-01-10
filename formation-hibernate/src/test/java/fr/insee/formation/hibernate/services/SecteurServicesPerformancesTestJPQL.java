@@ -1,19 +1,19 @@
 package fr.insee.formation.hibernate.services;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -29,7 +29,7 @@ import net.ttddyy.dsproxy.QueryCountHolder;
  * @author carlitto
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = { "/spring-test-datasource.xml", "/spring-core.xml" })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class SecteurServicesPerformancesTestJPQL {
@@ -46,7 +46,7 @@ public class SecteurServicesPerformancesTestJPQL {
 	@Autowired
 	private TransactionTemplate transactionTemplate;
 
-	@Before
+	@BeforeAll
 	public void testMappingAssociation() {
 		jeuxTestUtil.creerJeuxMappingAssociation();
 	}
@@ -63,7 +63,7 @@ public class SecteurServicesPerformancesTestJPQL {
 
 		QueryCount queryCount = QueryCountHolder.getGrandTotal();
 
-		assertEquals("Il ne doit y avoir qu'une requête", 1, queryCount.getSelect());
+		assertEquals(1, queryCount.getSelect(), "Il ne doit y avoir qu'une requête");
 
 		transactionTemplate.execute(new TransactionCallback<Object>() {
 
@@ -71,10 +71,10 @@ public class SecteurServicesPerformancesTestJPQL {
 
 				Secteur secteur = secteurDAO.findByCodeNaf("1104Z");
 
-				assertEquals("L'indice annuel de 2016 doit valoir 1170", new Double(468), secteur.getIndicesAnnuels().get(Year.parse("2016")).getValeur());
+				assertEquals(new Double(468), secteur.getIndicesAnnuels().get(Year.parse("2016")).getValeur(), "L'indice annuel de 2016 doit valoir 1170");
 
-				assertEquals("L'indice mensuel de décembre 2016 doit valoir 180", new Double(72),
-		                secteur.getIndicesMensuels().get(YearMonth.of(2016, Month.DECEMBER)).getValeur());
+				assertEquals(new Double(72),
+		                secteur.getIndicesMensuels().get(YearMonth.of(2016, Month.DECEMBER)).getValeur(), "L'indice mensuel de décembre 2016 doit valoir 180");
 
 				return null;
 			}

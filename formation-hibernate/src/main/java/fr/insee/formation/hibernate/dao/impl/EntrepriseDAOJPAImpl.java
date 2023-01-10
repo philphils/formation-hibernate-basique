@@ -2,14 +2,11 @@ package fr.insee.formation.hibernate.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Repository;
-
 import fr.insee.formation.hibernate.dao.EntrepriseDAO;
 import fr.insee.formation.hibernate.model.Entreprise;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 /**
  * Classe à compléter pour le TP3. Dans toutes les méthodes vous pouvez accéder
@@ -20,7 +17,7 @@ import fr.insee.formation.hibernate.model.Entreprise;
  * les méthodes s'exécutent au sein d'une transaction
  *
  */
-@Repository
+//@Repository
 @Transactional
 public class EntrepriseDAOJPAImpl implements EntrepriseDAO {
 

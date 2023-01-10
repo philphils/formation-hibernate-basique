@@ -1,26 +1,25 @@
 package fr.insee.formation.hibernate.dao;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import fr.insee.formation.hibernate.model.Entreprise;
 import fr.insee.formation.hibernate.util.JeuxTestUtil;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = { "/spring-test-datasource.xml", "/spring-core.xml" })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class EntrepriseDAOCRUDTest {
@@ -37,7 +36,7 @@ public class EntrepriseDAOCRUDTest {
 	@Value("${fr.insee.formation.hibernate.schema}")
 	private String schema;
 
-	@Before
+	@BeforeEach
 	public void init() {
 
 		jeuxTestUtil.insererJeuxVolumeReduit();
@@ -57,7 +56,7 @@ public class EntrepriseDAOCRUDTest {
 
 		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class).getResultList();
 
-		assertEquals("Il doit y avoir 4 entreprises", 4, entreprises.size());
+		assertEquals(4, entreprises.size(), "Il doit y avoir 4 entreprises");
 
 	}
 
@@ -68,7 +67,7 @@ public class EntrepriseDAOCRUDTest {
 
 		Entreprise entreprise = entityManager.find(Entreprise.class, 2);
 
-		assertEquals("La dénomination doit être en majuscule", entreprise.getDenomination().toUpperCase(), entreprise.getDenomination());
+		assertEquals(entreprise.getDenomination().toUpperCase(), entreprise.getDenomination(), "La dénomination doit être en majuscule");
 
 	}
 
@@ -79,7 +78,7 @@ public class EntrepriseDAOCRUDTest {
 
 		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class).getResultList();
 
-		assertEquals("Il doit y avoir 2 entreprises", 2, entreprises.size());
+		assertEquals(2, entreprises.size(), "Il doit y avoir 2 entreprises");
 	}
 
 }

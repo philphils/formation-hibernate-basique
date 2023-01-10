@@ -2,7 +2,7 @@ package fr.insee.formation.hibernate.model;
 
 import java.util.Date;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 
 public class Declaration {
 

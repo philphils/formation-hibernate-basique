@@ -2,7 +2,7 @@ package fr.insee.formation.hibernate.model;
 
 import java.time.Instant;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 
 public abstract class Indice {
 

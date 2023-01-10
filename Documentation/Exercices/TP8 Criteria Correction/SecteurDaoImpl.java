@@ -1,4 +1,4 @@
-package fr.insee.formation.hibernate5.dao.impl;
+package fr.insee.formation.hibernate.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,12 +11,12 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import fr.insee.formation.hibernate5.dao.SecteurDAO;
-import fr.insee.formation.hibernate5.model.Declaration;
-import fr.insee.formation.hibernate5.model.Entreprise;
-import fr.insee.formation.hibernate5.model.Entreprise_;
-import fr.insee.formation.hibernate5.model.Secteur;
-import fr.insee.formation.hibernate5.model.Secteur_;
+import fr.insee.formation.hibernate.dao.SecteurDAO;
+import fr.insee.formation.hibernate.model.Declaration;
+import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.Entreprise_;
+import fr.insee.formation.hibernate.model.Secteur;
+import fr.insee.formation.hibernate.model.Secteur_;
 
 @Repository
 public class SecteurDaoImpl implements SecteurDAO {
@@ -38,7 +38,7 @@ public class SecteurDaoImpl implements SecteurDAO {
 	}
 
 	@Override
-	public Secteur findByCodeNafWithEntreprisesAndDeclarationAndIndices(String codeNaf) {
+	public Secteur findByCodeNafWithEntreprisesAndDeclarationAndIndicesJPQL(String codeNaf) {
 
 		String requete = "SELECT secteur FROM Secteur secteur " + " JOIN FETCH secteur.indices indice "
 				+ " JOIN FETCH secteur.entreprises entreprise " + " JOIN FETCH entreprise.declarations declaration "

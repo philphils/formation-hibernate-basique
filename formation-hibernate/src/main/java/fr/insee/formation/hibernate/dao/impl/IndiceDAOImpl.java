@@ -3,16 +3,15 @@ package fr.insee.formation.hibernate.dao.impl;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Repository;
 
 import fr.insee.formation.hibernate.dao.IndiceDAO;
 import fr.insee.formation.hibernate.model.Indice;
 import fr.insee.formation.hibernate.model.IndiceAnnuel;
 import fr.insee.formation.hibernate.model.IndiceMensuel;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional

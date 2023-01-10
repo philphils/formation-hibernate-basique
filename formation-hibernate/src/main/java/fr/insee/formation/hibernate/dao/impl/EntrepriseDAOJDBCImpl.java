@@ -7,28 +7,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
+import javax.sql.DataSource;
 
-import fr.insee.config.InseeConfig;
-import fr.insee.config.exception.PoolException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
 import fr.insee.formation.hibernate.dao.EntrepriseDAO;
 import fr.insee.formation.hibernate.model.Entreprise;
 
+@Repository
 public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
-	private Logger logger = Logger.getLogger(EntrepriseDAOJDBCImpl.class);
+	private Logger logger = LoggerFactory.getLogger(EntrepriseDAOJDBCImpl.class);
 
 	@Value("${fr.insee.formation.hibernate.schema}")
 	private String schema;
+
+	@Autowired
+	DataSource dataSource;
 
 	@Override
 	public List<Entreprise> findAllOrderByDateCreation() {
 
 		Connection connection = getConnection();
 
-		//TODO TP1 Ecrire la requête. 
-		// Aide : Vous pouvez récupérer le schéma courant dans l'attribut schema de cette classe
+		// TODO TP1 Ecrire la requête.
+		// Aide : Vous pouvez récupérer le schéma courant dans l'attribut schema de
+		// cette classe
 		String requete = "";
 
 		PreparedStatement statement = null;
@@ -43,12 +51,12 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 			while (resultSet.next()) {
 
-				//TODO TP1 Créer les objets Java Entreprise et renseigner leur champs
+				// TODO TP1 Créer les objets Java Entreprise et renseigner leur champs
 
 			}
 
 		} catch (SQLException e) {
-			logger.error(e, e);
+			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 
@@ -57,7 +65,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					logger.error(e, e);
+					logger.error(e.getMessage(), e);
 					throw new RuntimeException(e);
 				}
 			}
@@ -70,33 +78,31 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 		Connection connection = null;
 
 		try {
-			connection = InseeConfig.getPool("hibernate").getConnection();
-		} catch (SQLException e) {
-			logger.error(e, e);
-			throw new RuntimeException(e);
-		} catch (PoolException e) {
-			logger.error(e, e);
+			connection = dataSource.getConnection();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
+
 		return connection;
 	}
 
 	@Override
 	public void persist(Entreprise entreprise) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void upperDenomination() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeEntrepriseById(int identifiant) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

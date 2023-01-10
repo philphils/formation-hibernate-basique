@@ -1,16 +1,17 @@
 package fr.insee.formation.hibernate.dao;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import fr.insee.formation.hibernate.model.Entreprise;
 import fr.insee.formation.hibernate.model.TypeVoie;
@@ -18,7 +19,7 @@ import fr.insee.formation.hibernate.model.TypeVoie;
 /**
  * Classe de test pour le TP1
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = { "/spring-test-datasource-jdbc.xml" })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class EntrepriseDAOJDBCTest {
@@ -31,7 +32,7 @@ public class EntrepriseDAOJDBCTest {
 
 		List<Entreprise> entreprises = entrepriseDAO.findAllOrderByDateCreation();
 
-		assertEquals("Il doit y avoir 3 entreprises", 3, entreprises.size());
+		assertEquals(3, entreprises.size(), "Il doit y avoir 3 entreprises");
 
 		Entreprise entreprise1 = entreprises.get(0);
 
