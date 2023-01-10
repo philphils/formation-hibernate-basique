@@ -1,28 +1,21 @@
 package fr.insee.formation.hibernate.dao;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import fr.insee.formation.hibernate.config.AbstractTest;
 import fr.insee.formation.hibernate.model.Entreprise;
 import fr.insee.formation.hibernate.util.JeuxTestUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "/spring-test-datasource.xml", "/spring-core.xml" })
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class EntrepriseDAOCRUDTest {
+public class EntrepriseDAOCRUDTest extends AbstractTest{
 
 	@PersistenceContext
 	private EntityManager entityManager;

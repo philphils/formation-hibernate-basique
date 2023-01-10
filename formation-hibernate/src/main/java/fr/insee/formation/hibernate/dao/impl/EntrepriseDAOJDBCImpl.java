@@ -23,7 +23,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 	private Logger logger = LoggerFactory.getLogger(EntrepriseDAOJDBCImpl.class);
 
-	@Value("${fr.insee.formation.hibernate.schema}")
+	@Value("${spring.jpa.properties.hibernate.default_schema}")
 	private String schema;
 
 	@Autowired

@@ -9,16 +9,12 @@ import java.time.YearMonth;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import fr.insee.formation.hibernate.config.AbstractTest;
 import fr.insee.formation.hibernate.dao.SecteurDAO;
 import fr.insee.formation.hibernate.model.Secteur;
 import fr.insee.formation.hibernate.util.JeuxTestUtil;
@@ -28,10 +24,7 @@ import net.ttddyy.dsproxy.QueryCountHolder;
 /**
  * Classe de test pour le TP8
  */
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "/spring-test-datasource.xml", "/spring-core.xml" })
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class SecteurServicesPerformancesTestCriteria {
+public class SecteurServicesPerformancesTestCriteria extends AbstractTest{
 
 	@Autowired
 	private JeuxTestUtil jeuxTestUtil;
