@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import fr.insee.formation.hibernate.config.AbstractTest;
 import fr.insee.formation.hibernate.model.Entreprise;
@@ -15,7 +14,7 @@ import fr.insee.formation.hibernate.util.JeuxTestUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-public class EntrepriseDAOCRUDTest extends AbstractTest{
+public class EntrepriseDAOCRUDTest extends AbstractTest {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -25,9 +24,6 @@ public class EntrepriseDAOCRUDTest extends AbstractTest{
 
 	@Autowired
 	private JeuxTestUtil jeuxTestUtil;
-
-	@Value("${fr.insee.formation.hibernate.schema}")
-	private String schema;
 
 	@BeforeEach
 	public void init() {
@@ -47,7 +43,8 @@ public class EntrepriseDAOCRUDTest extends AbstractTest{
 
 		entrepriseDAO.persist(entreprise);
 
-		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class).getResultList();
+		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class)
+				.getResultList();
 
 		assertEquals(4, entreprises.size(), "Il doit y avoir 4 entreprises");
 
@@ -60,7 +57,8 @@ public class EntrepriseDAOCRUDTest extends AbstractTest{
 
 		Entreprise entreprise = entityManager.find(Entreprise.class, 2);
 
-		assertEquals(entreprise.getDenomination().toUpperCase(), entreprise.getDenomination(), "La dénomination doit être en majuscule");
+		assertEquals(entreprise.getDenomination().toUpperCase(), entreprise.getDenomination(),
+				"La dénomination doit être en majuscule");
 
 	}
 
@@ -69,7 +67,8 @@ public class EntrepriseDAOCRUDTest extends AbstractTest{
 
 		entrepriseDAO.removeEntrepriseById(3);
 
-		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class).getResultList();
+		List<Entreprise> entreprises = entityManager.createQuery("SELECT ent FROM Entreprise ent", Entreprise.class)
+				.getResultList();
 
 		assertEquals(2, entreprises.size(), "Il doit y avoir 2 entreprises");
 	}
