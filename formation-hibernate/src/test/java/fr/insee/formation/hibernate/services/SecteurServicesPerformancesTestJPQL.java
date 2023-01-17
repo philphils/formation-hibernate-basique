@@ -9,6 +9,7 @@ import java.time.YearMonth;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -25,6 +26,7 @@ import net.ttddyy.dsproxy.QueryCountHolder;
  * @author carlitto
  *
  */
+@SpringBootTest(properties = { "activate.datasource-proxy=true" })
 public class SecteurServicesPerformancesTestJPQL extends AbstractTest{
 
 	@Autowired
