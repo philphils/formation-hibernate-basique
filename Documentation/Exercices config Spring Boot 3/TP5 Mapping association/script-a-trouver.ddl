@@ -1,80 +1,83 @@
-create sequence test.hibernate_sequence start 1 increment 1;
+create sequence test.declaration_seq start with 1 increment by 50;
+create sequence test.hib_seq start with 1 increment by 1;
+create sequence test.indice_seq start with 1 increment by 50;
+create sequence test.secteur_seq start with 1 increment by 50;
 
-    create table test.Declaration (
-       id int4 not null,
-        date timestamp,
-        montant float8,
-        entreprise_id int4,
+    create table test.declaration (
+       id integer not null,
+        date timestamp(6),
+        montant float(53),
+        entreprise_id integer,
         primary key (id)
     );
 
-    create table test.Entreprise (
-       id int4 not null,
+    create table test.entreprise (
+       id integer not null,
         rue varchar(255),
         numero varchar(255),
         pays varchar(255),
-        typeVoie varchar(255),
+        type_voie varchar(255),
         ville varchar(255),
-        dateCreation date,
+        date_creation date,
         denomination varchar(255),
-        formeJuridique varchar(255),
+        forme_juridique varchar(255),
         siren varchar(9) not null,
         telephone varchar(10),
-        secteur_id int4,
+        secteur_id integer,
         primary key (id)
     );
 
-    create table test.Indice (
-       id int4 not null,
-        derniereMaj timestamp,
-        valeur float8,
-        secteur_id int4,
+    create table test.indice (
+       id integer not null,
+        derniere_maj timestamp(6) with time zone,
+        valeur float(53),
+        secteur_id integer,
         primary key (id)
     );
 
-    create table test.IndiceAnnuel (
-       year timestamp,
-        id int4 not null,
+    create table test.indice_annuel (
+       year timestamp(6),
+        id integer not null,
         primary key (id)
     );
 
-    create table test.IndiceMensuel (
-       month timestamp,
-        id int4 not null,
+    create table test.indice_mensuel (
+       month timestamp(6),
+        id integer not null,
         primary key (id)
     );
 
-    create table test.Secteur (
-       id int4 not null,
-        codeNaf varchar(255),
-        libelleNomenclature varchar(255),
+    create table test.secteur (
+       id integer not null,
+        code_naf varchar(255),
+        libelle_nomenclature varchar(255),
         primary key (id)
     );
 
-    alter table test.Entreprise 
-       add constraint UK_ep28ukm4mifb7h3pelb50fj83 unique (siren);
+    alter table if exists test.entreprise 
+       add constraint UK_tq34gg6ld568rgypt9dgkes3t unique (siren);
 
-    alter table test.Declaration 
-       add constraint FK90tkl56kk5ijv7ctibus032a0 
+    alter table if exists test.declaration 
+       add constraint FKci8f3vilkcfbmw19i7x3pb6ue 
        foreign key (entreprise_id) 
-       references test.Entreprise;
+       references test.entreprise;
 
-    alter table test.Entreprise 
-       add constraint FKe6dwh12l8bd8ahuputqypvm1d 
+    alter table if exists test.entreprise 
+       add constraint FKlp02w8bopb6racr9s38rl3uno 
        foreign key (secteur_id) 
-       references test.Secteur;
+       references test.secteur;
 
-    alter table test.Indice 
-       add constraint FK5w5thq9ylbut3h9y111aexct5 
+    alter table if exists test.indice 
+       add constraint FKlyyg9jn51r8b14vurdx7mc65q 
        foreign key (secteur_id) 
-       references test.Secteur;
+       references test.secteur;
 
-    alter table test.IndiceAnnuel 
-       add constraint FK11u2aoco7d7cd6t8d73c8dcry 
+    alter table if exists test.indice_annuel 
+       add constraint FKbwmkyste1xpdlshjqytpxk8hb 
        foreign key (id) 
-       references test.Indice;
+       references test.indice;
 
-    alter table test.IndiceMensuel 
-       add constraint FKlncp5r8qwpolm0hycoefpmfe4 
+    alter table if exists test.indice_mensuel 
+       add constraint FKcm47lkvga8a03gm67fgyxwb39 
        foreign key (id) 
-       references test.Indice;
+       references test.indice;
