@@ -1,62 +1,63 @@
-create sequence test.hibernate_sequence start 1 increment 1;
+create sequence test.hib_seq start with 1 increment by 1;
+create sequence test.indice_seq start with 1 increment by 50;
 
-    create table test.Declaration (
-       id int4 not null,
-        date timestamp,
-        montant float8,
+    create table test.declaration (
+       id integer not null,
+        date timestamp(6),
+        montant float(53),
         primary key (id)
     );
 
-    create table test.Entreprise (
-       id int4 not null,
+    create table test.entreprise (
+       id integer not null,
         rue varchar(255),
         numero varchar(255),
         pays varchar(255),
-        typeVoie varchar(255),
+        type_voie varchar(255),
         ville varchar(255),
-        dateCreation date,
+        date_creation date,
         denomination varchar(255),
-        formeJuridique varchar(255),
+        forme_juridique varchar(255),
         siren varchar(9) not null,
         telephone varchar(10),
         primary key (id)
     );
 
-    create table test.Indice (
-       id int4 not null,
-        derniereMaj timestamp,
-        valeur float8,
+    create table test.indice (
+       id integer not null,
+        derniere_maj timestamp(6) with time zone,
+        valeur float(53),
         primary key (id)
     );
 
-    create table test.IndiceAnnuel (
-       year timestamp,
-        id int4 not null,
+    create table test.indice_annuel (
+       year timestamp(6),
+        id integer not null,
         primary key (id)
     );
 
-    create table test.IndiceMensuel (
-       month timestamp,
-        id int4 not null,
+    create table test.indice_mensuel (
+       month timestamp(6),
+        id integer not null,
         primary key (id)
     );
 
-    create table test.Secteur (
-       id int4 not null,
-        codeNaf varchar(255),
-        libelleNomenclature varchar(255),
+    create table test.secteur (
+       id integer not null,
+        code_naf varchar(255),
+        libelle_nomenclature varchar(255),
         primary key (id)
     );
 
-    alter table test.Entreprise 
-       add constraint UK_ep28ukm4mifb7h3pelb50fj83 unique (siren);
+    alter table if exists test.entreprise 
+       add constraint UK_tq34gg6ld568rgypt9dgkes3t unique (siren);
 
-    alter table test.IndiceAnnuel 
-       add constraint FK11u2aoco7d7cd6t8d73c8dcry 
+    alter table if exists test.indice_annuel 
+       add constraint FKbwmkyste1xpdlshjqytpxk8hb 
        foreign key (id) 
-       references test.Indice;
+       references test.indice;
 
-    alter table test.IndiceMensuel 
-       add constraint FKlncp5r8qwpolm0hycoefpmfe4 
+    alter table if exists test.indice_mensuel 
+       add constraint FKcm47lkvga8a03gm67fgyxwb39 
        foreign key (id) 
-       references test.Indice;
+       references test.indice;
