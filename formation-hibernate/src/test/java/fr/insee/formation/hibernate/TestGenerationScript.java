@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import fr.insee.formation.hibernate.config.AbstractTest;
 
-public class TestGenerationScriptClass extends AbstractTest{
+public class TestGenerationScript extends AbstractTest{
 
 	@Test
 	public void test() {
