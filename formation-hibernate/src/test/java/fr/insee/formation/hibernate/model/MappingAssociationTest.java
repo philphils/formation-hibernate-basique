@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.insee.formation.hibernate.config.AbstractTest;
 import fr.insee.formation.hibernate.dao.SecteurDAO;
 import fr.insee.formation.hibernate.util.JeuxTestUtil;
+import jakarta.transaction.Transactional;
 
 /**
  * Test pour le TP5
  *
  */
-public class MappingAssociationTest extends AbstractTest{
+public class MappingAssociationTest extends AbstractTest {
 
 	@Autowired
 	private JeuxTestUtil jeuxTestUtil;
@@ -30,6 +31,7 @@ public class MappingAssociationTest extends AbstractTest{
 	}
 
 	@Test
+	@Transactional
 	public void testSecteur() {
 
 		Secteur secteur = secteurDAO.findByCodeNaf("1104Z");
