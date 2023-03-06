@@ -39,7 +39,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 		// TODO TP1 Ecrire la requête.
 		// Aide : Vous pouvez récupérer le schéma courant dans l'attribut schema de
 		// cette classe
-		String requete = "SELECT * FROM " + schema + ".ENTREPRISE ORDER BY dateCreation";
+		String requete = "SELECT * FROM " + schema + ".ENTREPRISE ORDER BY date_Creation";
 
 		PreparedStatement statement = null;
 
@@ -68,7 +68,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 				adresse.setVille(resultSet.getString("ville"));
 
-				adresse.setTypeVoie(TypeVoie.valueOf(resultSet.getString("typevoie")));
+				adresse.setTypeVoie(TypeVoie.valueOf(resultSet.getString("type_voie")));
 
 				entreprise.setAdresse(adresse);
 
