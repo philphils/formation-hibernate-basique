@@ -3,11 +3,11 @@ CREATE TABLE test.entreprise (
     rue character varying(255),
     numero character varying(255),
     pays character varying(255),
-    typevoie character varying(255),
+    type_voie character varying(255),
     ville character varying(255),
-    datecreation date,
+    date_creation date,
     denomination character varying(255),
-    formejuridique character varying(255),
+    forme_juridique character varying(255),
     siren character varying(9) NOT NULL,
     telephone character varying(10)
 );
