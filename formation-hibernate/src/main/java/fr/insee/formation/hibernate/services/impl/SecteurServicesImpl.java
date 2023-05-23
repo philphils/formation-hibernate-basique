@@ -11,54 +11,66 @@ import jakarta.transaction.Transactional;
 @Service
 public class SecteurServicesImpl implements SecteurServices {
 
-    @Autowired
-    private SecteurDAO secteurDAO;
+	@Autowired
+	private SecteurDAO secteurDAO;
 
-    @Override
-    @Transactional
-    public Secteur calculerIndicesSecteurByCodeNaf(String codeNaf) {
+	@Override
+	@Transactional
+	public Secteur calculerIndicesSecteurByCodeNaf(String codeNaf) {
 
-        Secteur secteur = secteurDAO.findByCodeNaf(codeNaf);
+		Secteur secteur = secteurDAO.findByCodeNaf(codeNaf);
 
-        return calculerIndiceSecteur(secteur);
-    }
+		return calculerIndiceSecteur(secteur);
+	}
 
-    private Secteur calculerIndiceSecteur(Secteur secteur) {
+	private Secteur calculerIndiceSecteur(Secteur secteur) {
 
-        // TODO TP6 Réaliser la méthode de calcul des indices mensuels et annuels,
-        // observer avec le debugger les requêtes qui sont générées. Seul le secteur est récupéré plus haut
-        // avec la méthode secteurDAO.findByCodeNaf(codeNaf)
+		// TODO TP6 Réaliser la méthode de calcul des indices mensuels et annuels,
+		// observer avec le debugger les requêtes qui sont générées. Seul le secteur est
+		// récupéré plus haut
+		// avec la méthode secteurDAO.findByCodeNaf(codeNaf)
 
-        // On part du principe que les Indices d'un secteur sont déjà créés et que leur valeur est initialisée à 0. Pas de création d'indice à faire donc.
-        // La valeur de chaque Indice doit correspondre simplement à la somme des valeurs des déclarations pour la période concernée.
-        // Ex : l'indice mensuel du mois d'août 2016 pour un certain secteur doit valoir la somme des montants déclarés par les entreprises de ce secteur pour
-        // ce mois.
-        // Idem pour les Indices annuels mais la période est l'année
+		// On part du principe que les Indices d'un secteur sont déjà créés et que leur
+		// valeur est initialisée à 0. Pas de création d'indice à faire donc.
+		// La valeur de chaque Indice doit correspondre simplement à la somme des
+		// valeurs des déclarations pour la période concernée.
+		// Ex : l'indice mensuel du mois d'août 2016 pour un certain secteur doit valoir
+		// la somme des montants déclarés par les entreprises de ce secteur pour
+		// ce mois.
+		// Idem pour les Indices annuels mais la période est l'année
 
-        // Petite aide, code pour obtenir le Year et le YearMonth à partir de la date de la déclaration :
-        // Year.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
-        // YearMonth.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+		// Pour récupérer le bon indice correspondant à une date donnée, 2 méthodes sont
+		// disponibles dans Secteur :
+		// - getIndicesAnnuels : qui renvoit une Map<Year, IndiceAnnuel> des indices
+		// annuels liés au secteur indexés par le Year
+		// - getIndicesMensuels : qui renvoit une Map<YearMonth, IndiceMensuel> des
+		// indices mensuels liés au secteur indexés par le YearMonth
 
-        return secteur;
-    }
+		// Petite aide, code pour obtenir le Year et le YearMonth à partir de la date de
+		// la déclaration :
+		// Year.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+		// YearMonth.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
 
-    @Override
-    @Transactional
-    public Secteur calculerIndicesSecteurByCodeNafRequeteJPQL(String codeNaf) {
+		return secteur;
+	}
 
-        Secteur secteur = secteurDAO.findByCodeNafWithEntreprisesAndDeclarationAndIndicesJPQL(codeNaf);
+	@Override
+	@Transactional
+	public Secteur calculerIndicesSecteurByCodeNafRequeteJPQL(String codeNaf) {
 
-        return calculerIndiceSecteur(secteur);
-    }
+		Secteur secteur = secteurDAO.findByCodeNafWithEntreprisesAndDeclarationAndIndicesJPQL(codeNaf);
 
-    @Override
-    @Transactional
-    public Secteur calculerIndicesSecteurByCodeNafRequeteCriteria(String codeNaf) {
+		return calculerIndiceSecteur(secteur);
+	}
 
-        Secteur secteur = secteurDAO.findByCodeNafWithEntreprisesAndDeclarationAndIndicesCriteria(codeNaf);
+	@Override
+	@Transactional
+	public Secteur calculerIndicesSecteurByCodeNafRequeteCriteria(String codeNaf) {
 
-        return calculerIndiceSecteur(secteur);
+		Secteur secteur = secteurDAO.findByCodeNafWithEntreprisesAndDeclarationAndIndicesCriteria(codeNaf);
 
-    }
+		return calculerIndiceSecteur(secteur);
+
+	}
 
 }
