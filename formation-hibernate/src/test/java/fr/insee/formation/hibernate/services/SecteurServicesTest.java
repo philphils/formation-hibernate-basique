@@ -18,7 +18,7 @@ import fr.insee.formation.hibernate.dao.SecteurDAO;
 import fr.insee.formation.hibernate.model.Secteur;
 import fr.insee.formation.hibernate.util.JeuxTestUtil;
 
-public class SecteurServicesTest extends AbstractTest{
+public class SecteurServicesTest extends AbstractTest {
 
 	@Autowired
 	private JeuxTestUtil jeuxTestUtil;
@@ -49,11 +49,11 @@ public class SecteurServicesTest extends AbstractTest{
 				Secteur secteur = secteurDAO.findByCodeNaf("1104Z");
 
 				assertEquals(new Double(468), secteur.getIndicesAnnuels().get(Year.parse("2016")).getValeur(),
-						"L'indice annuel de 2016 doit valoir 1170");
+						"L'indice annuel de 2016 doit valoir 468");
 
 				assertEquals(new Double(72),
 						secteur.getIndicesMensuels().get(YearMonth.of(2016, Month.DECEMBER)).getValeur(),
-						"L'indice mensuel de décembre 2016 doit valoir 180");
+						"L'indice mensuel de décembre 2016 doit valoir 72");
 
 				return null;
 			}
