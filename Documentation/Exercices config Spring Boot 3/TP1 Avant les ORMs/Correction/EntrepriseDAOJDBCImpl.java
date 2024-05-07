@@ -25,11 +25,15 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 	private Logger logger = LoggerFactory.getLogger(EntrepriseDAOJDBCImpl.class);
 
-	@Value("${spring.jpa.properties.hibernate.default_schema}")
-	private String schema;
+	private final String schema;
 
-	@Autowired
-	DataSource dataSource;
+	private final DataSource dataSource;
+
+	public EntrepriseDAOJDBCImpl(DataSource dataSource,
+			@Value("${spring.jpa.properties.hibernate.default_schema}") String schema) {
+		this.dataSource = dataSource;
+		this.schema = schema;
+	}
 
 	@Override
 	public List<Entreprise> findAllOrderByDateCreation() {

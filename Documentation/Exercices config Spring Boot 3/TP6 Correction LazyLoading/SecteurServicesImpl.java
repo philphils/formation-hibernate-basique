@@ -19,8 +19,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class SecteurServicesImpl implements SecteurServices {
 
-	@Autowired
-	private SecteurDAO secteurDAO;
+	private final SecteurDAO secteurDAO;
+
+	public SecteurServicesImpl(SecteurDAO secteurDAO) {
+		this.secteurDAO = secteurDAO;
+	}
 
 	@Override
 	@Transactional

@@ -1,6 +1,5 @@
 package fr.insee.formation.hibernate.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.insee.formation.hibernate.dao.SecteurDAO;
@@ -11,8 +10,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class SecteurServicesImpl implements SecteurServices {
 
-	@Autowired
-	private SecteurDAO secteurDAO;
+	private final SecteurDAO secteurDAO;
+
+	public SecteurServicesImpl(SecteurDAO secteurDAO) {
+		this.secteurDAO = secteurDAO;
+	}
 
 	@Override
 	@Transactional

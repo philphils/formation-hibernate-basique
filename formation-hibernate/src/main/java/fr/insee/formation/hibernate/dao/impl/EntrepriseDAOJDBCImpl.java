@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -23,11 +22,15 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 	private Logger logger = LoggerFactory.getLogger(EntrepriseDAOJDBCImpl.class);
 
-	@Value("${spring.jpa.properties.hibernate.default_schema}")
-	private String schema;
+	private final String schema;
 
-	@Autowired
-	DataSource dataSource;
+	private final DataSource dataSource;
+
+	public EntrepriseDAOJDBCImpl(DataSource dataSource,
+			@Value("${spring.jpa.properties.hibernate.default_schema}") String schema) {
+		this.dataSource = dataSource;
+		this.schema = schema;
+	}
 
 	@Override
 	public List<Entreprise> findAllOrderByDateCreation() {
