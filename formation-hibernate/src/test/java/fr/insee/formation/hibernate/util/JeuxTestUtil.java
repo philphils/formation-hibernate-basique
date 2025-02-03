@@ -8,6 +8,7 @@ import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -74,6 +75,10 @@ public class JeuxTestUtil {
 	public void creerJeuxMappingAssociation() {
 
 		Secteur secteur = jeuxMappingAssociation();
+
+		for (Entreprise entreprise : secteur.getEntreprises()) {
+			entityManager.persist(entreprise);
+		}
 
 		entityManager.persist(secteur);
 
@@ -195,7 +200,8 @@ public class JeuxTestUtil {
 
 				Declaration declaration = new Declaration();
 
-				declaration.setDate(Date.from(YearMonth.of(2016, month).atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+				declaration.setDate(
+						Date.from(YearMonth.of(2016, month).atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
 				declaration.setMontant(new Double(month.getValue() * compteur));
 
