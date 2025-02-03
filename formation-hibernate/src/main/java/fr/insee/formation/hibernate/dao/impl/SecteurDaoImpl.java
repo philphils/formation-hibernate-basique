@@ -6,6 +6,7 @@ import fr.insee.formation.hibernate.dao.SecteurDAO;
 import fr.insee.formation.hibernate.model.Secteur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 
 @Repository
 public class SecteurDaoImpl implements SecteurDAO {
@@ -28,10 +29,16 @@ public class SecteurDaoImpl implements SecteurDAO {
 
 	@Override
 	public Secteur findByCodeNafWithEntreprisesAndDeclarationAndIndicesJPQL(String codeNaf) {
-		
-		//TODO : TP7 Réaliser la  méthode de récupération du secteurs avec ses associations avec JPQL
 
-		return null;
+		String requete = "SELECT secteur FROM Secteur secteur " + " JOIN FETCH secteur.indices indice "
+				+ " JOIN FETCH secteur.entreprises entreprise " + " JOIN FETCH entreprise.declarations declaration "
+				+ " WHERE secteur.codeNaf = :codeNaf ";
+
+		TypedQuery<Secteur> query = entityManager.createQuery(requete, Secteur.class);
+
+		query.setParameter("codeNaf", codeNaf);
+
+		return query.getSingleResult();
 	}
 
 	@Override
@@ -43,3 +50,4 @@ public class SecteurDaoImpl implements SecteurDAO {
 	}
 
 }
+
