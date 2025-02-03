@@ -11,11 +11,14 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import fr.insee.formation.hibernate.dao.EntrepriseDAO;
+import fr.insee.formation.hibernate.model.Adresse;
 import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.TypeVoie;
 
 @Repository
 public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
@@ -40,7 +43,7 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 		// TODO TP1 Ecrire la requête.
 		// Aide : Vous pouvez récupérer le schéma courant dans l'attribut schema de
 		// cette classe
-		String requete = "";
+		String requete = "SELECT * FROM " + schema + ".ENTREPRISE ORDER BY date_Creation";
 
 		PreparedStatement statement = null;
 
@@ -55,6 +58,25 @@ public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 			while (resultSet.next()) {
 
 				// TODO TP1 Créer les objets Java Entreprise et renseigner leur champs
+				Entreprise entreprise = new Entreprise();
+
+				entreprise.setId(resultSet.getInt("id"));
+
+				entreprise.setSiren(resultSet.getString("siren"));
+
+				entreprise.setDenomination(resultSet.getString("denomination"));
+
+				Adresse adresse = new Adresse();
+
+				adresse.setNomVoie(resultSet.getString("rue"));
+
+				adresse.setVille(resultSet.getString("ville"));
+
+				adresse.setTypeVoie(TypeVoie.valueOf(resultSet.getString("type_voie")));
+
+				entreprise.setAdresse(adresse);
+
+				resultEntreprises.add(entreprise);
 
 			}
 
