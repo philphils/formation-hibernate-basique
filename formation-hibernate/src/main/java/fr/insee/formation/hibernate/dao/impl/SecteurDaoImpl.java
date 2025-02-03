@@ -3,10 +3,19 @@ package fr.insee.formation.hibernate.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import fr.insee.formation.hibernate.dao.SecteurDAO;
+import fr.insee.formation.hibernate.model.Declaration;
+import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.Entreprise_;
 import fr.insee.formation.hibernate.model.Secteur;
+import fr.insee.formation.hibernate.model.Secteur_;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Fetch;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Root;
 
 @Repository
 public class SecteurDaoImpl implements SecteurDAO {
@@ -44,10 +53,26 @@ public class SecteurDaoImpl implements SecteurDAO {
 	@Override
 	public Secteur findByCodeNafWithEntreprisesAndDeclarationAndIndicesCriteria(String codeNaf) {
 
-		//TODO : TP8 Réaliser la méthode de récupération du secteurs avec ses associations en Criteria
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Secteur> criteria = builder.createQuery(Secteur.class);
+
+		Root<Secteur> root = criteria.from(Secteur.class);
+
+		criteria.select(root);
+
+		criteria.where(builder.equal(root.get(Secteur_.codeNaf), codeNaf));
+
+		/*
+		 * On récupérer les indices, entreprises, et déclarations
+		 */
+		root.fetch(Secteur_.indices, JoinType.INNER);
 		
-		return null;
+		Fetch<Secteur, Entreprise> fetchEntreprise = root.fetch(Secteur_.entreprises, JoinType.INNER);
+		
+		Fetch<Entreprise, Declaration> fetchDeclarations = fetchEntreprise.fetch(Entreprise_.declarations, JoinType.INNER);
+		
+		return entityManager.createQuery(criteria).getSingleResult();
 	}
 
 }
-
