@@ -2,10 +2,19 @@ package fr.insee.formation.hibernate.model;
 
 import java.time.Instant;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Transient;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Indice {
 
+	@Id
+	@GeneratedValue
 	private int id;
 
 	@Transient
