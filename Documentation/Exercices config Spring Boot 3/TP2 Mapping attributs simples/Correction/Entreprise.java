@@ -22,8 +22,8 @@ import jakarta.persistence.Transient;
 public class Entreprise {
 
 	@Id
-	@GeneratedValue(generator = "hib_seq", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "hib_seq", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(generator = "hib_ent_seq", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "hib_ent_seq", initialValue = 1, allocationSize = 20)
 	private int id;
 
 	private String denomination;
