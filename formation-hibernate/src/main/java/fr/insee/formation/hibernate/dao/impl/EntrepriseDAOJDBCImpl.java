@@ -20,7 +20,6 @@ import fr.insee.formation.hibernate.model.Adresse;
 import fr.insee.formation.hibernate.model.Entreprise;
 import fr.insee.formation.hibernate.model.TypeVoie;
 
-@Repository
 public class EntrepriseDAOJDBCImpl implements EntrepriseDAO {
 
 	private Logger logger = LoggerFactory.getLogger(EntrepriseDAOJDBCImpl.class);
