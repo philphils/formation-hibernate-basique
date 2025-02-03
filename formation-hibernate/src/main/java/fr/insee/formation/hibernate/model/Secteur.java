@@ -9,11 +9,15 @@ import java.util.Map;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 
+@Entity
 public class Secteur {
 
+	@Id
+	@GeneratedValue
 	private int id;
 
 	private String codeNaf;

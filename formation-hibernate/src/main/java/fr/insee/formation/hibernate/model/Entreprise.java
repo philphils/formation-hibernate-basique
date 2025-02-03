@@ -5,22 +5,42 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 
+@Entity
 public class Entreprise {
 
+	@Id
+	@GeneratedValue(generator = "hib_ent_seq", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "hib_ent_seq", initialValue = 1, allocationSize = 20)
 	private int id;
 
 	private String denomination;
 
+	@Column(length = 9, unique = true, nullable = false)
 	private String siren;
 
+	@Embedded
 	private Adresse adresse;
 
+	@Column(length = 10)
 	private String telephone;
 
+	@Enumerated(EnumType.STRING)
 	private FormeJuridique formeJuridique;
 
+	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 
 	@Transient
