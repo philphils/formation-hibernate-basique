@@ -1,8 +1,17 @@
-package fr.insee.formation.hibernate.services.impl;
+﻿package fr.insee.formation.hibernate.services.impl;
 
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZoneId;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.insee.formation.hibernate.dao.SecteurDAO;
+import fr.insee.formation.hibernate.model.Declaration;
+import fr.insee.formation.hibernate.model.Entreprise;
+import fr.insee.formation.hibernate.model.IndiceAnnuel;
+import fr.insee.formation.hibernate.model.IndiceMensuel;
 import fr.insee.formation.hibernate.model.Secteur;
 import fr.insee.formation.hibernate.services.SecteurServices;
 import jakarta.transaction.Transactional;
@@ -26,32 +35,22 @@ public class SecteurServicesImpl implements SecteurServices {
 	}
 
 	private Secteur calculerIndiceSecteur(Secteur secteur) {
+		for (Entreprise entreprise : secteur.getEntreprises()) {
 
-		// TODO TP6 Réaliser la méthode de calcul des indices mensuels et annuels,
-		// observer avec le debugger les requêtes qui sont générées. Seul le secteur est
-		// récupéré plus haut
-		// avec la méthode secteurDAO.findByCodeNaf(codeNaf)
+			for (Declaration declaration : entreprise.getDeclarations().values()) {
 
-		// On part du principe que les Indices d'un secteur sont déjà créés et que leur
-		// valeur est initialisée à 0. Pas de création d'indice à faire donc.
-		// La valeur de chaque Indice doit correspondre simplement à la somme des
-		// valeurs des déclarations pour la période concernée.
-		// Ex : l'indice mensuel du mois d'août 2016 pour un certain secteur doit valoir
-		// la somme des montants déclarés par les entreprises de ce secteur pour
-		// ce mois.
-		// Idem pour les Indices annuels mais la période est l'année
+				IndiceAnnuel indiceAnnuel = secteur.getIndicesAnnuels().get(Year.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
 
-		// Pour récupérer le bon indice correspondant à une date donnée, 2 méthodes sont
-		// disponibles dans Secteur :
-		// - getIndicesAnnuels : qui renvoit une Map<Year, IndiceAnnuel> des indices
-		// annuels liés au secteur indexés par le Year
-		// - getIndicesMensuels : qui renvoit une Map<YearMonth, IndiceMensuel> des
-		// indices mensuels liés au secteur indexés par le YearMonth
+				IndiceMensuel indiceMensuel = secteur.getIndicesMensuels()
+				        .get(YearMonth.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
 
-		// Petite aide, code pour obtenir le Year et le YearMonth à partir de la date de
-		// la déclaration :
-		// Year.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
-		// YearMonth.from(declaration.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+				indiceAnnuel.setValeur(indiceAnnuel.getValeur() + declaration.getMontant());
+
+				indiceMensuel.setValeur(indiceMensuel.getValeur() + declaration.getMontant());
+
+			}
+
+		}
 
 		return secteur;
 	}
@@ -70,9 +69,9 @@ public class SecteurServicesImpl implements SecteurServices {
 	public Secteur calculerIndicesSecteurByCodeNafRequeteCriteria(String codeNaf) {
 
 		Secteur secteur = secteurDAO.findByCodeNafWithEntreprisesAndDeclarationAndIndicesCriteria(codeNaf);
-
+		
 		return calculerIndiceSecteur(secteur);
-
+		
 	}
 
 }
