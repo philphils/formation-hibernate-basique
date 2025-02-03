@@ -1,23 +1,23 @@
 package fr.insee.formation.hibernate.model.converter;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.time.Year;
-import java.time.ZoneId;
-import java.util.Date;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class YearConverter implements AttributeConverter<Year, Date> {
+public class YearConverter implements AttributeConverter<Year, LocalDate> {
 
 	@Override
-	public Date convertToDatabaseColumn(Year attribute) {
-		return Date.from(attribute.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
+	public LocalDate convertToDatabaseColumn(Year year) {
+		return LocalDate.of(year.getValue(), Month.JANUARY, 1);
 	}
 
 	@Override
-	public Year convertToEntityAttribute(Date dbData) {
-		return Year.from(dbData.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	public Year convertToEntityAttribute(LocalDate localDate) {
+		return Year.from(localDate);
 	}
 
 }
