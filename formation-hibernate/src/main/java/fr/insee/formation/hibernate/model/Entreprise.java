@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -13,17 +14,21 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.MapKeyTemporal;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
 
 @Entity
 public class Entreprise {
 
 	@Id
-	@GeneratedValue(generator = "hib_ent_seq", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "hib_ent_seq", initialValue = 1, allocationSize = 20)
+	@GeneratedValue(generator = "hib_seq", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "hib_seq", initialValue = 1, allocationSize = 1)
 	private int id;
 
 	private String denomination;
@@ -43,10 +48,13 @@ public class Entreprise {
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn
 	private Secteur secteur;
 
-	@Transient
+	@OneToMany(mappedBy = "entreprise", cascade=CascadeType.ALL)
+	@MapKey(name = "date")
+	@MapKeyTemporal(TemporalType.DATE)
 	private Map<Date, Declaration> declarations = new HashMap<Date, Declaration>();
 
 	public Map<Date, Declaration> getDeclarations() {

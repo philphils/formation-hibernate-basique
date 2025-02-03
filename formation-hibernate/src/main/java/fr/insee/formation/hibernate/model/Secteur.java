@@ -8,10 +8,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Secteur {
@@ -24,7 +25,7 @@ public class Secteur {
 
 	private String libelleNomenclature;
 
-	@Transient
+	@OneToMany(mappedBy = "secteur", cascade = CascadeType.ALL)
 	private Set<Entreprise> entreprises = new HashSet<Entreprise>();
 
 	/*
@@ -35,13 +36,13 @@ public class Secteur {
 	 * Avec @MappedSuperclass c'est possible, mais on perd la possibilité de
 	 * faire du polymorhpisme...
 	 */
-	// @OneToMany(mappedBy = "secteur")
-	// private Set<IndiceAnnuel> indiceAnnuels = new HashSet<IndiceAnnuel>();
+	//	@OneToMany(mappedBy = "secteur")
+	//	private Set<IndiceAnnuel> indiceAnnuels = new HashSet<IndiceAnnuel>();
 	//
-	// @OneToMany(mappedBy = "secteur")
-	// private Set<IndiceMensuel> indiceMensuels = new HashSet<IndiceMensuel>();
+	//	@OneToMany(mappedBy = "secteur")
+	//	private Set<IndiceMensuel> indiceMensuels = new HashSet<IndiceMensuel>();
 
-	@Transient
+	@OneToMany(mappedBy = "secteur", cascade = CascadeType.ALL)
 	private Set<Indice> indices = new HashSet<Indice>();
 
 	public Entreprise addEntreprise(Entreprise entreprise) {
@@ -96,21 +97,21 @@ public class Secteur {
 		return Collections.unmodifiableSet(entreprises);
 	}
 
-	// public Set<IndiceAnnuel> getIndiceAnnuels() {
-	// return indiceAnnuels;
-	// }
+	//	public Set<IndiceAnnuel> getIndiceAnnuels() {
+	//		return indiceAnnuels;
+	//	}
 	//
-	// public void setIndiceAnnuels(Set<IndiceAnnuel> indiceAnnuels) {
-	// this.indiceAnnuels = indiceAnnuels;
-	// }
+	//	public void setIndiceAnnuels(Set<IndiceAnnuel> indiceAnnuels) {
+	//		this.indiceAnnuels = indiceAnnuels;
+	//	}
 	//
-	// public Set<IndiceMensuel> getIndiceMensuels() {
-	// return indiceMensuels;
-	// }
+	//	public Set<IndiceMensuel> getIndiceMensuels() {
+	//		return indiceMensuels;
+	//	}
 	//
-	// public void setIndiceMensuels(Set<IndiceMensuel> indiceMensuels) {
-	// this.indiceMensuels = indiceMensuels;
-	// }
+	//	public void setIndiceMensuels(Set<IndiceMensuel> indiceMensuels) {
+	//		this.indiceMensuels = indiceMensuels;
+	//	}
 
 	public Set<Indice> getIndices() {
 		return Collections.unmodifiableSet(indices);

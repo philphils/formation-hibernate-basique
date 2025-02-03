@@ -7,7 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Transient;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -17,7 +18,8 @@ public abstract class Indice {
 	@GeneratedValue
 	private int id;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn
 	private Secteur secteur;
 
 	private Double valeur;

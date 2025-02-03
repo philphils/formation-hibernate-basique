@@ -5,7 +5,8 @@ import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Declaration {
@@ -14,7 +15,8 @@ public class Declaration {
 	@GeneratedValue
 	private int id;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn
 	private Entreprise entreprise;
 
 	private Date date;
