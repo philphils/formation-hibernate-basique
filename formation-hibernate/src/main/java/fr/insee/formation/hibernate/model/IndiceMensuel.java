@@ -7,14 +7,14 @@ import jakarta.persistence.Entity;
 @Entity
 public class IndiceMensuel extends Indice {
 
-	private YearMonth month;
+	private YearMonth mois;
 
-	public YearMonth getMonth() {
-		return month;
+	public YearMonth getMois() {
+		return mois;
 	}
 
-	public void setMonth(YearMonth month) {
-		this.month = month;
+	public void setMois(YearMonth month) {
+		this.mois = month;
 	}
 
 }

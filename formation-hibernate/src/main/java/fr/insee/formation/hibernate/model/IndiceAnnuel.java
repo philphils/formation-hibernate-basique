@@ -7,14 +7,14 @@ import jakarta.persistence.Entity;
 @Entity
 public class IndiceAnnuel extends Indice {
 
-	private Year year;
+	private Year annee;
 
-	public Year getYear() {
-		return year;
+	public Year getAnnee() {
+		return annee;
 	}
 
-	public void setYear(Year year) {
-		this.year = year;
+	public void setAnnee(Year year) {
+		this.annee = year;
 	}
 
 }

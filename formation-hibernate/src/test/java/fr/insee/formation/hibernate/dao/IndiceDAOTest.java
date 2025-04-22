@@ -37,11 +37,11 @@ public class IndiceDAOTest extends AbstractTest{
 
 		assertEquals(Double.valueOf(10), indiceAnnuel.getValeur(), "L'indice vaut 10");
 
-		assertEquals(indiceAnnuel.getYear().toString(), "2017", "L'annuel est 2017");
+		assertEquals(indiceAnnuel.getAnnee().toString(), "2017", "L'annuel est 2017");
 
 		IndiceMensuel indiceMensuel = indiceDAO.findIndiceMensuel(indentifiant2);
 
-		assertEquals(YearMonth.of(2017, Month.DECEMBER), indiceMensuel.getMonth(), "Le mois doit être decemnbre");
+		assertEquals(YearMonth.of(2017, Month.DECEMBER), indiceMensuel.getMois(), "Le mois doit être decemnbre");
 
 		assertEquals(Double.valueOf(10.4d), indiceMensuel.getValeur(), "L'indice doit valoir 10.4");
 

@@ -47,7 +47,7 @@ public class JeuxTestUtil {
 
 		indiceAnnuel.setValeur(10d);
 
-		indiceAnnuel.setYear(Year.of(2017));
+		indiceAnnuel.setAnnee(Year.of(2017));
 
 		entityManager.persist(indiceAnnuel);
 
@@ -59,7 +59,7 @@ public class JeuxTestUtil {
 
 		IndiceMensuel indiceMensuel = new IndiceMensuel();
 
-		indiceMensuel.setMonth(YearMonth.of(2017, Month.DECEMBER));
+		indiceMensuel.setMois(YearMonth.of(2017, Month.DECEMBER));
 
 		indiceMensuel.setValeur(10.4d);
 
@@ -219,7 +219,7 @@ public class JeuxTestUtil {
 
 			IndiceMensuel indiceMensuel = new IndiceMensuel();
 
-			indiceMensuel.setMonth(YearMonth.of(2016, month));
+			indiceMensuel.setMois(YearMonth.of(2016, month));
 
 			indiceMensuel.setValeur(0d);
 
@@ -229,7 +229,7 @@ public class JeuxTestUtil {
 
 		IndiceAnnuel indiceAnnuel = new IndiceAnnuel();
 
-		indiceAnnuel.setYear(Year.parse("2016"));
+		indiceAnnuel.setAnnee(Year.parse("2016"));
 
 		indiceAnnuel.setValeur(0d);
 

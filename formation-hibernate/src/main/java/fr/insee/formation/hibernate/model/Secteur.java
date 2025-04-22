@@ -123,7 +123,7 @@ public class Secteur {
 
 		for (Indice indice : indices) {
 			if (indice instanceof IndiceAnnuel) {
-				indiceAnnuels.put(((IndiceAnnuel) indice).getYear(), (IndiceAnnuel) indice);
+				indiceAnnuels.put(((IndiceAnnuel) indice).getAnnee(), (IndiceAnnuel) indice);
 			}
 		}
 
@@ -137,7 +137,7 @@ public class Secteur {
 		for (Indice indice : indices) {
 
 			if (indice instanceof IndiceMensuel) {
-				indiceMensuels.put(((IndiceMensuel) indice).getMonth(), (IndiceMensuel) indice);
+				indiceMensuels.put(((IndiceMensuel) indice).getMois(), (IndiceMensuel) indice);
 			}
 
 		}
