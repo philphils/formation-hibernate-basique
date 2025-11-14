@@ -67,3 +67,7 @@
   height: auto;
   width: auto;
 }
+
+.reveal section img.image-large {
+  max-height: 50vh !important;
+}
