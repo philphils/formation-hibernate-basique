@@ -250,7 +250,7 @@ private Map<TypeCar, Car> carMap;
  * Le formateur décline toutes responsabilités dans l’application de ces principes dans le monde réel… 🤪   
 
 --
-# TP 5 : Mapper les associations
+# TP 5 : Mapper les associations (1/2)
 
 *  Mapper les liens bidirectionnels entre : 
     *  Entreprise → Secteur 
@@ -261,7 +261,7 @@ private Map<TypeCar, Car> carMap;
 ![](./img/diapo_formation_hibernate_5.png)
 
 --
-# TP 5 : Mapper les associations
+# TP 5 : Mapper les associations (2/2)
 
 *  On suppose que les déclarations dépendent des entreprises\, et les indices des secteurs\. Positionner l’option « cascade » aux endroits où elle est pertinente 
 *  Vérifier le fonctionnement avec  MappingAssociationTest 

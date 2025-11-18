@@ -323,7 +323,7 @@ public class YearMonthConverter
 
 --
 # TP 2 : 
-# Mapping des attributs simples
+# Mapping des attributs simples (1/2)
 
  * Lire le script de création du schéma fourni 
 
@@ -337,7 +337,7 @@ public class YearMonthConverter
 
 --
 # TP 2 : 
-# Mapping des attributs simples
+# Mapping des attributs simples (2/2)
 
  * Le script est généré à la racine du projet\, nommé     create\.sql 
 
