@@ -20,7 +20,7 @@
 
  * JPA contraint à de bonnes pratiques pour les associations → Et c’est tant mieux \! 
 
- * Conseil : Respecter la logique objet  
+ * <u>Conseil :</u> Respecter la logique objet  
 
  * →     Pas d'attributs \- clefs étrangères \!\!\! 
 

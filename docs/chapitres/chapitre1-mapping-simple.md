@@ -19,7 +19,7 @@
 *  Versions utilisées pour la formation (avec et sans Spring Boot) : 
     *  Hibernate 5\.9 ou 6\.1 
     *  Spring 4\.3 ou 6\.0 
-*  Les partie « Conseil : » sont personnels\, certains développeurs sûrement d’avis différents 
+*  Les partie « <u>Conseil :</u> » sont personnels\, certains développeurs sûrement d’avis différents 
 *  Tentative de montrer aussi « Comment utiliser Hibernate »\, car framework riche et parfois on s’y perd 
 --
 # Les principes d'Hibernate/JPA
@@ -55,7 +55,7 @@
 --
 # Mise en place du mapping
 
-*  Conseil : Conserver le comportement par défaut autant que possible  
+*  <u>Conseil :</u> Conserver le comportement par défaut autant que possible  
 *  Permet d’avoir une cohérence :  
     *  notions métier → classes objets Java → nom des objets BDD 
 *  Pour définir un autre nom de table : @Table 
@@ -65,7 +65,7 @@
 
 *  Une « entité » doit définir un identifiant 
 *  Correspond au besoin d’une clef primaire pour une table en BDD 
-*  Conseil : Préférer les identifiants techniques (règles métier peuvent évoluer) 
+*  <u>Conseil :</u> Préférer les identifiants techniques (règles métier peuvent évoluer) 
 *  Se déclare avec @Id 
 
 --

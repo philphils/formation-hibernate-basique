@@ -73,7 +73,7 @@ WHERE …
 
 # Conseil sécuritaire !
 
- * Conseil :     Mettez toutes vos associations en FetchType = LAZY \!\!\! 
+ * <u>Conseil :</u>     Mettez toutes vos associations en FetchType = LAZY \!\!\! 
  * Cause très fréquente de dégradations des performances 
  * Mieux vaut contrôler le chargement des associations 
  * En cas de nécessité absolue de `FetchType.EAGER`, possibilité de configuration avec `@Fetch`
