@@ -16,7 +16,7 @@ Cette formation couvre les **concepts fondamentaux** du framework **Hibernate** 
 - 📖 **Diaporama** explicatif 📑 (`https://philphils.github.io/formation-hibernate-basique/`)
 - 💻 **Projet Java** contenant les exercices de TP corrigés 🛠️ (`formation-hibernate/`)
 - 📄 **Documentation** et corrections 📚 (`docs/`)
-- Pour réaliser les TP partir des branches `TP*`
+- **Pour réaliser les TP** -> partir des branches `TP*`
 
 ## 🏁 Prérequis
 - Connaissances de base en **Java**
