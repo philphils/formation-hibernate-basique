@@ -13,9 +13,10 @@ Cette formation couvre les **concepts fondamentaux** du framework **Hibernate** 
 - 🔹 **Configuration du framework** et bonnes pratiques
 
 ## 📂 Contenu du dépôt
-- 📖 **Diaporama** explicatif 📑 (`Documentation/diapo_formation_hibernate.odp`)
-- 💻 **Projet Java** contenant les exercices de TP 🛠️ (`formation-hibernate/`)
-- 📄 **Documentation** et instructions 📚 (`Documentation/`)
+- 📖 **Diaporama** explicatif 📑 (`https://philphils.github.io/formation-hibernate-basique/`)
+- 💻 **Projet Java** contenant les exercices de TP corrigés 🛠️ (`formation-hibernate/`)
+- 📄 **Documentation** et corrections 📚 (`docs/`)
+- Pour réaliser les TP partir des branches `TP*`
 
 ## 🏁 Prérequis
 - Connaissances de base en **Java**
