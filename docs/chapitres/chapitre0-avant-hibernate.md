@@ -20,25 +20,27 @@
 --
 # Plan
 
- * Mapper les attributs simples 
+ * [Chapitre 1 - Mapper les attributs simples](#/1)
 
- * Réaliser les opérations CRUD 
+ * [Chapitre 2 - Réaliser les opérations CRUD](#/2)
 
- * Mapper l’héritage 
+ * [Chapitre 3 - Mapper l’héritage](#/3)
 
- * Mapper les associations 
+ * [Chapitre 4 - Mapper les associations](#/4)
+
+ * [Chapitre 5 - Utiliser le LazyLoading](#/5)
 
 --
 
  # Plan
 
- * Utiliser le LazyLoading 
+ * [Chapitre 6 - Stratégie de chargement complexe](#/6)
 
- * Réaliser des requêtes de chargement complexe avec le JPQL 
+ * [Chapitre 7 - Réaliser des requêtes de chargement complexe avec le JPQL](#/7)
 
- * Réaliser des requêtes de chargement complexe avec Criteria 
+ * [Chapitre 8 - Réaliser des requêtes de chargement complexe avec Criteria](#/8)
 
- * Configurer JPA/Hibernate 
+ * [Chapitre 9 - Configuration d'Hibernate et outils annexes](#/9)
 
 
 --
