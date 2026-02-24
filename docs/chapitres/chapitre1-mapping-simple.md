@@ -176,9 +176,12 @@
 
  * SEQUENCE : utilisation d'une séquence avec @Sequence Generator 
 
- * TABLE : utilisation d'une table avec @TableGenerator 
+ * TABLE : utilisation d'une table avec @TableGenerator
 
- * IDENTITY : on se repose sur un mécanisme inhérent à la base (type SERIAL pour Postgres) mais attention requête supplémentaire pour récupérer la valeur
+--
+# Choix d'une « stratégie »
+
+ * IDENTITY : on se repose sur un mécanisme inhérent à la base (type SERIAL pour Postgres)... mais attention requête supplémentaire pour récupérer la valeur ! (lenteurs possibles)
 
  * AUTO : on laisse Hibernate choisir (déconseillé)\, par défaut séquence sous Postgres 
 
